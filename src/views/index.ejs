@@ -1,0 +1,97 @@
+<%- include ('partials/_header') %>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- FORM -->
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-boddy">
+                        <form action="/agregar" method="POST">
+                            <div class="form-group">
+                                <label>Legajo</label>
+                                <input type="text" name="legajo" class="form-control mb-2" placeholder="Legajo">
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" name="nombre" class="form-control mb-2" placeholder="Nombre">
+                            </div>
+                            <div class="form-group">
+                                <label>Apellido</label>
+                                <input type="text" name="apellido" class="form-control mb-2" placeholder="Apellido">
+                            </div>
+                            <div class="form-group">
+                                <label>Dni</label>
+                                <input type="text" name="dni" class="form-control mb-2" placeholder="Dni">
+                            </div>
+                            <div class="form-group">
+                                <label>Sector</label>
+                                <input type="text" name="sector" class="form-control mb-2" placeholder="Sector">
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha Ingreso</label>
+                                <input type="text" name="fechaIngreso" class="form-control mb-2"
+                                    placeholder="Fecha Ingreso">
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-outline-primary ">Agregar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIST -->
+            <div class="col-md-8">
+                <table class="table border table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Legajo</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Dni</th>
+                            <th scope="col">Sector</th>
+                            <th scope="col">Fecha Ingreso</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < emps.length; i++) { %>
+                            <tr>
+                                <td>
+                                    <%- emps[i].legajo %>
+                                </td>
+                                <td>
+                                    <%- emps[i].nombre %>
+                                </td>
+                                <td>
+                                    <%- emps[i].apellido %>
+                                </td>
+                                <td>
+                                    <%- emps[i].dni %>
+                                </td>
+                                <td>
+                                    <%- emps[i].sector %>
+                                </td>
+                                <td>
+                                    <%- emps[i].fechaIngreso %>
+                                </td>
+                                <td>
+                                    <a href="/activo/<%- emps[i].legajo %>" class="btn <%- emps[i].activo ? 'btn-success' : 'btn-dark' %>">
+                                        Activo
+                                    </a>
+                                    <a href="/delete/<%- emps[i].legajo %>" class="btn btn-danger">Eliminar</a>
+                                    <a href="/editar/<%- emps[i].legajo %>" class="btn btn-info">Editar</a>
+                                </td>
+
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <%- include ('partials/_footer') %>
